@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2 class="mb-0">My Tasks</h2>
+  <div>
+    <a href="{{ url_for('tasks.create_task') }}" class="btn btn-success">
+      <i class="fa fa-plus-circle me-1"></i> New Task
+    </a>
+  </div>
+</div>
+
+{% if tasks|length == 0 %}
+  <div class="card p-4 text-center text-muted">No tasks yet — create your first task.</div>
+{% else %}
+  <div class="row g-3">
+    {% for t in tasks %}
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card task-card status-card {{ t.status }} h-100">
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between mb-2">
+              <h5 class="card-title task-title mb-0">{{ t.title|e }}</h5>
+              <div>
+                <span class="badge status {{ t.status }}">{{ t.status.replace('_',' ').title() }}</span>
+              </div>
+            </div>
+
+            <p class="card-text text-truncate">{{ t.description|e }}</p>
+
+            <div class="mt-auto d-flex justify-content-between align-items-center">
+              <small class="text-muted">Due: {{ t.due_date }}</small>
+              <div class="btn-group">
+                <a href="{{ url_for('tasks.edit_task', task_id=t.id) }}" class="btn btn-sm btn-outline-primary">
+                  <i class="fa fa-edit"></i>
+                </a>
+                <form method="post" action="{{ url_for('tasks.delete_task', task_id=t.id) }}" style="display:inline;">
+                  {{ csrf_form.hidden_tag() }}
+                  <button class="btn btn-sm btn-outline-danger" type="submit" title="Delete">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div class="card-footer mt-3 p-0 border-0 text-muted small">
+              Owner: {{ t.owner }}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+{% endblock %}

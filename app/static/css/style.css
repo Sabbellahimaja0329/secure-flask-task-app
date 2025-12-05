@@ -1,0 +1,300 @@
+:root {
+  --bg: #f7f9fc;
+  --card: #ffffff;
+  --muted: #6c757d;
+  --text: #1f2937;
+  --accent: #0d6efd;
+  --success: #198754;
+  --danger: #dc3545;
+  --glass: rgba(255, 255, 255, 0.6);
+  --radius: 12px;
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 8px 30px rgba(15, 23, 42, 0.08);
+  font-family: "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  line-height: 1.15;
+  color: #ffffff;
+}
+
+.display-6 {
+  font-weight: 800 !important;
+  font-size: 2.8rem;
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
+.lead {
+  font-size: 1.18rem;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+}
+
+.btn {
+  font-weight: 600 !important;
+  letter-spacing: 0.3px;
+}
+
+.card-title {
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #333333;
+}
+
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[data-theme="dark"] {
+  --bg: #0b1220;
+  --card: #071022;
+  --muted: #9aa4b2;
+  --text: #e6eef8;
+  --accent: #4ea8ff;
+  --glass: rgba(255, 255, 255, 0.03);
+}
+
+/* Body */
+body {
+  background: linear-gradient(135deg, #74e7ae 0%, #64dff0 50%, #66a3f0 100%);
+  background-attachment: fixed;
+  color: white;
+}
+/* Header / Navbar */
+.site-header {
+  background: var(--card);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), #6bc0ff);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+.brand-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+}
+.search-box input {
+  width: 260px;
+}
+
+/* Buttons */
+.btn-icon {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--muted);
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+.btn-icon:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Cards */
+.card {
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(2, 6, 23, 0.12);
+}
+
+/* Task status badges */
+.status {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.status.todo {
+  background: rgba(13, 110, 253, 0.08);
+  color: var(--accent);
+}
+.status.in_progress {
+  background: rgba(255, 193, 7, 0.08);
+  color: #b38600;
+}
+.status.done {
+  background: rgba(25, 135, 84, 0.08);
+  color: var(--success);
+}
+
+/* Truncate description */
+.card-text.text-truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  background: transparent;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .search-box {
+    display: none;
+  }
+  .brand-title {
+    display: none;
+  }
+  .btn-icon {
+    padding: 6px;
+  }
+}
+
+/* Utility small spacing for consistent look */
+.small-muted {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* Full card background colors based on status */
+.status-card.todo {
+  background: rgba(0, 200, 83, 0.12); /* mild green */
+  border-left: 6px solid rgb(0, 150, 60);
+}
+
+.status-card.in_progress {
+  background: rgba(0, 123, 255, 0.12); /* mild blue */
+  border-left: 6px solid rgb(0, 92, 200);
+}
+
+.status-card.done,
+.status-card.closed {
+  background: rgba(255, 99, 99, 0.12); /* mild red */
+  border-left: 6px solid rgb(200, 60, 60);
+}
+
+.status-card {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.status-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Centered hero content (no figure) */
+.hero-content {
+  padding: 48px 0;
+  /* make the hero slightly taller on large screens */
+  min-height: 360px;
+}
+
+/* Slight visual separation for the user panel */
+.user-panel {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 30px rgba(2, 6, 23, 0.06);
+}
+
+/* Ensure landing CTA spacing looks good */
+.hero-content .btn-lg {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Slightly reduce the width of info cards for balance */
+.hero-content .border.rounded {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Make sure hero text color is readable on darker gradient */
+.hero-content h1,
+.hero-content .lead {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Responsive tweak: reduce hero min-height on small devices */
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 32px 0;
+    min-height: auto;
+    text-align: left;
+  }
+  .display-6 {
+    font-size: 1.9rem;
+  }
+}
+
+
+/* Force navbar to use Nunito and give it a darker gradient */
+.navbar, .navbar * {
+  font-family: "Nunito", sans-serif !important;
+  letter-spacing: 0.2px;
+}
+
+/* Darker gradient navbar - pick the variant you prefer */
+.navbar {
+  background: linear-gradient(135deg, rgba(37,122,93,0.95) 0%, rgba(29,138,163,0.95) 50%, rgba(30,98,168,0.95) 100%);
+  color: #fff;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  backdrop-filter: blur(6px);
+}
+
+/* Make sure navbar buttons look good on dark background */
+.navbar .btn-outline-light {
+  color: rgba(255,255,255,0.95);
+  border-color: rgba(255,255,255,0.15);
+}
+
+.navbar .btn-outline-light:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.25);
+}
+
+/* Slightly translucent search input in navbar */
+.navbar .form-control {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: white;
+}
+.navbar .form-control::placeholder {
+  color: rgba(255,255,255,0.85);
+}

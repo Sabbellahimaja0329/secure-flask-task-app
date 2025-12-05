@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Welcome — TaskApp{% endblock %}
+
+{% block content %}
+<!-- Centered hero without any figure -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xl-8 col-lg-9 col-md-10 text-start hero-content">
+      <h1 class="display-6 mb-3">Simple. Secure. Productive.</h1>
+      <p class="lead text-muted mb-4">
+        TaskApp helps you manage tasks with role-based access, secure authentication and a clean UI.
+        Built with Flask, MySQL and secure-by-design defaults for authentication and input handling.
+      </p>
+
+      {% if session.user_name %}
+        <div class="card p-3 mb-3 user-panel">
+          <div class="d-flex align-items-center">
+            <div class="me-3">
+              <div class="brand-logo" style="width:56px;height:56px;border-radius:10px;display:flex;align-items:center;justify-content:center;">
+                {{ session.user_name[0]|upper }}
+              </div>
+            </div>
+            <div class="flex-grow-1">
+              <div class="small text-muted">Signed in as</div>
+              <div class="fw-bold">{{ session.user_name }}</div>
+              <div class="small text-muted">Role: {{ session.role }}</div>
+            </div>
+            <div class="text-end">
+              <a class="btn btn-outline-primary btn-sm mb-1" href="{{ url_for('tasks.dashboard') }}">Open Dashboard</a>
+              <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('auth.logout') }}">Logout</a>
+            </div>
+          </div>
+        </div>
+        <p class="text-muted">You can create tasks, edit them, or manage assignments from your dashboard.</p>
+      {% else %}
+        <div class="d-flex gap-2 mb-4">
+          <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-lg">
+            <i class="fa fa-user-plus me-2"></i> Get Started
+          </a>
+          <a href="{{ url_for('auth.login') }}" class="btn btn-outline-secondary btn-lg">
+            <i class="fa fa-sign-in-alt me-2"></i> Login
+          </a>
+        </div>
+
+        <div class="row gy-3 mt-3">
+          <div class="col-12 col-md-6">
+            <div class="p-3 border rounded">
+              <h6 class="mb-1">Secure by design</h6>
+              <p class="small text-muted mb-0">Password hashing, input validation, CSRF protection and parameterized queries.</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="p-3 border rounded">
+              <h6 class="mb-1">Simple workflows</h6>
+              <p class="small text-muted mb-0">Create, update and track progress with a clean UI and role-based access.</p>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
